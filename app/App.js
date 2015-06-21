@@ -1,17 +1,33 @@
 import React from 'react';
+import {Header, Browse, About, Error404 } from './components/SampleComponents';
 
 export default class App extends React.Component {
 
   render() {
 
     switch(this.props.route) {
-
+      case "browse":
+        return (
+          <div>
+            <Header />
+            <Browse />
+          </div>
+      );
       case "about":
-        return <a href='#home'>Home</a>;
+        return (
+          <div>
+            <Header />
+            <About />
+          </div>
+      );
 
       default:
-        return <a href='#about'>About</a>;
-
+        return (
+          <div>
+            <Header />
+            <Error404 />
+          </div>
+      );
     }
   }
 }
