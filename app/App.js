@@ -10,7 +10,7 @@ export default class App extends React.Component {
         return (
           <div>
             <Header />
-            <Browse />
+            <Browse params={this.props.params} />
           </div>
       );
       case "about":

@@ -11,6 +11,7 @@ export class Browse extends React.Component {
     return (
       <div>
         <h3>This is the Browse View</h3>
+        <p>First url param: {this.props.params[0] || 'none'}</p>
           Go to: <a href='#about'>About</a>
       </div>
     );
@@ -22,7 +23,11 @@ export class About extends React.Component {
     return (
       <div>
         <h3>This is the About View</h3>
-        Go to: <a href='#browse'>Browse</a>
+        Go to:
+        <ul>
+          <li><a href='#browse'>browse</a></li>
+          <li><a href='#browse/item123'>browse/item123</a></li>
+        </ul>
      </div>
     );
   }
