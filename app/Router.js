@@ -1,6 +1,8 @@
 import React from 'react';
 import hasher from 'hasher';
 
+import App from './App';
+
 class Router extends React.Component {
 
   constructor() { super();
@@ -15,11 +17,12 @@ class Router extends React.Component {
   }
 
   render () {
-    return <p><a href="#test">test</a></p>;
+    return (
+      <App route={this.state.hash} />
+    );
   }
 
   handleChange() {
-    console.log('handling hash change');
     this.setState({
       hash: hasher.getHash()
     });
