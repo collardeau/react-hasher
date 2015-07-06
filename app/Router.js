@@ -1,18 +1,21 @@
 import React from 'react';
 import hasher from 'hasher';
 
-import App from './App';
+export default class Router extends React.Component {
 
-class Router extends React.Component {
+  handleChange() {
+    let hash = hasher.getHash();
+    let parts = hash.split('/');
+    this.setState({
+      route: parts.shift(),
+      params: parts
+    });
+  }
 
-  constructor() { super();
+  constructor() {
+    super();
     hasher.init();
-    this.state = {
-      hashInfo: {
-        route: '',
-        params: []
-      }
-    };
+    this.state = { route: 'test', params: ['parma1'] };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -21,33 +24,15 @@ class Router extends React.Component {
     hasher.initialized.add(this.handleChange);
   }
 
-  getHashInfo() {
-    let hash = hasher.getHash();
-    let parts = hash.split('/');
-    return {
-       route: parts.shift(),
-       params: parts
-    };
-  }
-
   render () {
+    console.log(this.state);
     return (
-      <App
-        route={this.state.hashInfo.route}
-        params={this.state.hashInfo.params}
-      />
+      <div route={this.state.route}>
+        {this.props.children}
+      </div>
     );
   }
 
-  handleChange() {
-    this.setState({
-      hashInfo: this.getHashInfo()
-    });
-  }
 }
 
-React.render(
-    <Router />,
-    document.getElementById('app')
-);
 
