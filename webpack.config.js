@@ -1,13 +1,18 @@
+var webpack = require('webpack');
+var path = require('path');
+
 module.exports = {
-  entry: "./app/Router.js",
+  entry: [
+    './app/Router.js'
+  ],
   output: {
-    path: './public',
-    filename: "bundle.js"
+    path: 'public',
+    filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['jsx', 'babel'], exclude: /node_modules/}
-    ]
-  }
+     loaders: [
+       { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/}
+     ]
+   }
 };
 
