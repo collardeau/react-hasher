@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 import hasher from 'hasher';
 
 export default class Router extends React.Component {
@@ -15,7 +15,7 @@ export default class Router extends React.Component {
   constructor() {
     super();
     hasher.init();
-    this.state = { route: 'test', params: ['parma1'] };
+    this.state = { route: '', params: [''] };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -24,15 +24,22 @@ export default class Router extends React.Component {
     hasher.initialized.add(this.handleChange);
   }
 
+  renderChildren() {
+    return React.Children.map(this.props.children, child => {
+      return React.addons.cloneWithProps(child, {
+        route: this.state.route,
+        params: this.state.params
+      });
+    });
+  }
+
   render () {
-    console.log(this.state);
     return (
-      <div route={this.state.route}>
-        {this.props.children}
+      <div>
+        { this.renderChildren() }
       </div>
     );
   }
 
 }
-
 
