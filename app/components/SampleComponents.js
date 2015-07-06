@@ -11,6 +11,7 @@ export class Browse extends React.Component {
     return (
       <div>
         <h3>This is the Browse View</h3>
+        <input type='checkbox' />
         <p>First url param: {this.props.params[0] || 'none'}</p>
           Go to: <a href='#about'>About</a>
       </div>
